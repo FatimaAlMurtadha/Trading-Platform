@@ -2,13 +2,22 @@ namespace App;
 
 class Item
 {
-  public string? ItemName;
-  public string? ItemDiscription;
+  string? ItemName;
+  string? ItemDescription;
 
-  public Item(string? itemname, string? itemdiscription)
+  public Item(string? itemname, string? itemdescription)
   {
     ItemName = itemname;
-    ItemDiscription = itemdiscription;
+    ItemDescription = itemdescription;
   }
+  public string? GetItemName()
+  {
+    return ItemName;
+  }
+  public string? GetItemDescription()
+  {
+    return ItemDescription;
+  }
+
 }
 

@@ -4,25 +4,23 @@ namespace App;
 
 class User 
 {
-  public string? Username;
+  string? UserEmail;
   string? _password;
 
-  public User(string? username, string? password)
+  public User(string? useremail, string? password)
   {
-    Username = username;
+    UserEmail = useremail;
     _password = password;
   }
-  public bool TryLogin(string? username, string? password)
+  public string GetUserEmail()
   {
-    return username == Username && password == _password;
+    return UserEmail;
+  }
+  public bool TryLogin(string? useremail, string? password)
+  {
+    return useremail == UserEmail && password == _password;
   }
 
 }
 
 
-enum Trade_Status
-{
-  Pending,
-  Denied,
-  Accepted,
-}

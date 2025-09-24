@@ -1,6 +1,6 @@
 namespace App;
 
-class Trade 
+class Trade
 {
   string? SenderName;
   string? ReciverName;
@@ -14,5 +14,12 @@ class Trade
 
   }*/
 
+
 }
 
+enum Trade_Status
+{
+  Pending,
+  Denied,
+  Accepted,
+}

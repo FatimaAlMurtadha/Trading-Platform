@@ -26,99 +26,46 @@ bool running = true;
 
 User? active_user = null;
 
-Console.Clear();
-Console.WriteLine("------- Trading System -------");
-Console.WriteLine();
-Console.WriteLine("Chose one of the following:");
-Console.WriteLine();
-Console.WriteLine("1. Register an account.");
-Console.WriteLine("2. log in ");
-
-string input = Console.ReadLine();
-
-if (input == "1")
+while (running)
 {
-  Console.WriteLine("Enter an email to register: ");
-  string useremail = Console.ReadLine();
-  Console.WriteLine("Enter a password to register: ");
-  string password = Console.ReadLine();
-  users.Add(new User(useremail, password));
+  Console.Clear();
+  Console.WriteLine("------- Trading System -------");
+  Console.WriteLine();
+  Console.WriteLine("Chose one of the following:");
+  Console.WriteLine();
+  Console.WriteLine("1. Register an account.");
+  Console.WriteLine("2. log in ");
+  Console.WriteLine("f. Close ");
 
-  Console.WriteLine("Congragelations. Your account is registered seccussfully.");
-  running = false;
-}
-else if (input == "2")
-{
-  while (running)
+  string input = Console.ReadLine();
+
+  switch (input)
   {
-    Console.Clear();
-
-    if (active_user == null)
-    {
-      Console.WriteLine("User email");
+    case "1":
+      Console.WriteLine("Enter an email to register: ");
       string useremail = Console.ReadLine();
-      Console.Clear();
-      Console.Write("Password: ");
+      Console.WriteLine("Enter a password to register: ");
       string password = Console.ReadLine();
+      users.Add(new User(useremail, password));
 
+      Console.WriteLine("Congragelations. Your account is registered seccussfully.");
+      break;
+
+    case "2":
       Console.Clear();
-
-      foreach (User user in users)
+      if (active_user == null)
       {
-        if (user.TryLogin(useremail, password))
-        {
-          active_user = user;
-          break;
-        }
-
-      }
-    }
-    else
-    {
-      Console.Clear();
-      Console.WriteLine("------- Trading System -------");
-      Console.WriteLine("Welcome to our trade system!");
-      Console.WriteLine();
-      Console.WriteLine("What do you want to do today: ");
-      Console.WriteLine();
-      Console.WriteLine("1. Upload an item to start your trade. ");
-      Console.WriteLine("2. Show other users items");
-      Console.WriteLine("3. Request a trade for other users items. ");
-      Console.WriteLine("4. Show trade requests.");
-      Console.WriteLine("5. Accept a trade requests.");
-      Console.WriteLine("6. Deny a trade requests.");
-      Console.WriteLine("7. Accept a trade requests.");
-      Console.WriteLine("8. Show a completed requests.");
-      Console.WriteLine("9. Log out.");
-      Console.WriteLine("f. Close.");
-      string user_choice= Console.ReadLine();
-
-      switch (user_choice)
-      {
-        case "1": // add an item
-
-          break;
-
-        case "f": // close
-          running = false;
-          break;
-        default: break;  
-
-      }
-    }
-  }
-
-}
-
-
-
-    
-      
+        Console.WriteLine("User email");
+        useremail = Console.ReadLine();
         Console.Clear();
+        Console.Write("Password: ");
+        password = Console.ReadLine();
+
+        Console.Clear();
+        users.Add(new User(useremail, password));
+
         Console.WriteLine("------- Trading System -------");
         Console.WriteLine("Welcome to our trade system!");
-        Console.WriteLine();
-        Console.WriteLine("What do you want to do today: ");
         Console.WriteLine();
         Console.WriteLine("1. Upload an item to start your trade. ");
         Console.WriteLine("2. Show other users items");
@@ -131,7 +78,93 @@ else if (input == "2")
         Console.WriteLine("9. Log out.");
         Console.WriteLine("f. Close.");
 
-        
+        string user_choice = Console.ReadLine();
 
+        switch (user_choice)
+        {
+          case "1": // add an item
+            Console.Clear();
+            Console.WriteLine("Item's name: ");
+            string? itemname = Console.ReadLine();
+
+            Console.WriteLine("Item's describtion: ");
+            string? itemdescription = Console.ReadLine();
+
+            Console.WriteLine("Your email: ");
+            string? owneremail = Console.ReadLine();
+
+            items.Add(new Item(itemname, itemdescription, owneremail));
+            Console.WriteLine("Your item is successfully uploaded. ");
+
+            break;
+
+          case "2": // show other's items
+            Console.Clear();
+            Console.WriteLine("Here are all user's items: ");
+            Console.WriteLine();
+            foreach (Item item in items)
+            {
+              if (item.GetOwnerEmail() != "")
+              {
+                Console.WriteLine($"Item's name:  {item.GetItemName()}, \nDescription: {item.GetItemDescription()}, \nThe owner: {item.GetOwnerEmail}");
+
+              }
+
+            }
+
+            break;
+
+          case "3": //send a request
+
+            Console.Clear();
+            Console.WriteLine("Enter the email address of the owner:  ");
+            string reciveremail = Console.ReadLine();
+
+            Console.WriteLine("Which item would you like to request: ");
+             itemname = Console.ReadLine();
+
+            Item selected_item = null;
+
+            foreach (Item item in items)
+            {
+              if (item.GetOwnerEmail() == reciveremail && item.GetItemName() == itemname)
+              {
+                selected_item = item;
+                break; 
+              }
+            }
+            if (selected_item != null)
+            {
+              //trades.Add(active_user, reciveremail, selected_item);
+
+              
+            }
+
+            break;
+
+          case "f":
+
+            break;
+
+          default: break;
+        }
+    
+
+        break;
+      }
+
+      break;
+
+    case "f":
+      running = false;
+
+      break;
+
+    default: break;
+
+      
+  }  
+
+}
 
 Console.WriteLine("The programe is done!");

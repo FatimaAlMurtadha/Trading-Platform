@@ -6,7 +6,7 @@ class Item
   string? ItemDescription;
   string? OwnerEmail;
 
-  public Item(string? itemname, string? itemdescription, string? owneremail)
+  public Item (string? itemname, string? itemdescription, string? owneremail)
   {
     ItemName = itemname;
     ItemDescription = itemdescription;

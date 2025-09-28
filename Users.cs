@@ -1,7 +1,7 @@
 namespace App;
 
 
-
+// a user class to manage logning in and loggning out.
 class User 
 {
   string? UserEmail;

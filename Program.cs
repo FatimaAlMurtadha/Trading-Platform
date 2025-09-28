@@ -14,7 +14,7 @@
 
 
 
-  List<User> users = new List<User>();
+List<User> users = new List<User>();
 //users.Add(new User("u1", "fatima"));
 
 List<Item> items = new List<Item>();
@@ -210,11 +210,13 @@ while (running)
     case "2": // log in
 
       Console.Clear();
+
       if (active_user == null)
       {
         Console.WriteLine("Your email");
         useremail = Console.ReadLine();
         Console.Clear();
+
         Console.Write("Password: ");
         password = Console.ReadLine();
 
@@ -222,7 +224,7 @@ while (running)
 
         foreach (User user in users)
         {
-          if (user.GetUserEmail() == useremail && users.CheckPassword(password))
+          if (user.TryLogin(useremail, password))
           {
             found_user = user;
             break;
@@ -245,7 +247,7 @@ while (running)
       }
 
       Console.WriteLine();
-      Console.WriteLine("Pres ENTER to continue.");
+      Console.WriteLine("Pres ENTER to continue.....");
       input = Console.ReadLine();
 
       break;
@@ -256,19 +258,11 @@ while (running)
 
       if (active_user == null)
       {
-        Console.WriteLine("You should first log in, ");
-
-        Console.WriteLine("User email");
-        useremail = Console.ReadLine();
-        Console.Clear();
-        Console.Write("Password: ");
-        password = Console.ReadLine();
-
-        Console.Clear();
-        users.Add(new User(useremail, password));
+        Console.WriteLine("You should first log in, press ENTER to continue....");
+        input = Console.ReadLine();
         break;
       }
-      else if (active_user != null)
+      else
       {
         Console.WriteLine("Item's name: ");
         string? itemname = Console.ReadLine();
@@ -276,15 +270,14 @@ while (running)
         Console.WriteLine("Item's describtion: ");
         string? itemdescription = Console.ReadLine();
 
-        Console.WriteLine("Your email: ");
-        string? owneremail = Console.ReadLine();
+        string? owneremail = active_user.GetUserEmail();
 
         items.Add(new Item(itemname, itemdescription, owneremail));
         Console.WriteLine("Your item is successfully uploaded. ");
         Console.WriteLine();
 
       }
-      
+
       Console.WriteLine("Pres ENTER to continue.");
       input = Console.ReadLine();
 
@@ -292,7 +285,26 @@ while (running)
 
     case "4": // show others items
 
-      Console.WriteLine();
+      Console.Clear();
+
+      if (active_user == null)
+      {
+        Console.WriteLine("You should first log in ...");
+      }
+      else
+      {
+        Console.WriteLine("Items of other users: ");
+
+        foreach (Item item in items)
+        {
+          if (item.GetOwnerEmail() != active_user.GetUserEmail())
+          {
+            Console.WriteLine($"Item: {item.GetItemName()}, Description: {item.GetItemDescription()}, Owner: {item.GetOwnerEmail()}.");
+
+            Console.WriteLine(---------------------------------);
+          }
+        }
+      }
       Console.WriteLine("Pres ENTER to continue.");
       input = Console.ReadLine();
 
@@ -300,14 +312,69 @@ while (running)
 
     case "5": //send requests
 
-      Console.WriteLine();
-      Console.WriteLine("Pres ENTER to continue.");
+      Console.Clear();
 
+      if (active_user == null)
+      {
+        Console.WriteLine("You should first log in...");
+      }
+      else
+      {
+        Console.WriteLine("Enter the item's name: ");
+        string? itemname = Console.ReadLine();
+
+        Console.WriteLine("Enter the email of the item's owner: ");
+        string? reciveremail = Console.ReadLine();
+
+        Item? requested_item = null; // Check if the item is there
+
+        foreach (Item item in items)
+        {
+          if (item.GetItemName() == itemname && item.GetOwnerEmail() == reciveremail)
+          {
+            requested_item = item;
+            break;
+          }
+        }
+        if (requested_item != null)
+        {
+          trades.Add(new Trade(active_user.GetUserEmail(), reciveremail,
+          requested_item, Trade_Status.Pending));
+
+          Console.WriteLine("Your request is successfully sent.");
+        }
+        else
+        {
+          Console.WriteLine("Item's name or owner's email adress is wrong.....");
+        }
+      }
+
+      Console.WriteLine("Pres ENTER to continue.");
       input = Console.ReadLine();
 
       break;
 
     case "6": // show request
+      Console.Clear();
+      if (active_user == null)
+      {
+        Console.WriteLine("You should first log in....");
+      }
+      else
+      {
+        Console.WriteLine("You received the following requests: ");
+
+        foreach (Trade trade in trades)
+        {
+          if (trade.GetReceiverEmail() == active_user.GetUserEmail()
+          && trade.GetStatus() == Trade_Status.Pending)
+          {
+            Console.WriteLine($"a request from: {trade.GetSenderEmail()} , for item: {trade.GetItem()}, status: {trade.GetStatus()}");
+            Console.WriteLine("-------------------------------");
+
+          }
+        }
+      }
 
       Console.WriteLine();
       Console.WriteLine("Pres ENTER to continue.");
@@ -317,6 +384,27 @@ while (running)
       break;
 
     case "7": // accept trade requests
+      Console.Clear();
+
+      if (active_user == null)
+      {
+        Console.WriteLine("You should first log in......");
+      }
+      else
+      {
+        Console.WriteLine("Enter the sender's email address: ");
+        string? senderemail = Console.ReadLine();
+
+        foreach (Trade trade in trades)
+        {
+          if (trade.GetReceiverEmail() == active_user.GetUserEmail() && trade.GetSenderEmail() == senderemail
+          && trade.GetStatus() == Trade_Status.Pending)
+          {
+            trade.Accept();
+            Console.WriteLine("Trade requests accepted.");
+          }
+        }
+      }
 
       Console.WriteLine();
       Console.WriteLine("Pres ENTER to continue.");
@@ -325,33 +413,73 @@ while (running)
       input = Console.ReadLine();
       break;
     case "8": // deny
+      Console.Clear();
 
+      if (active_user == null)
+      {
+        Console.WriteLine("You should first log in.....");
+      }
+      else
+      {
+        Console.WriteLine("Enter the sender's email address: ");
+        string? senderemail = Console.ReadLine();
 
+        foreach (Trade trade in trades)
+        {
+          if (trade.GetReceiverEmail() == active_user.GetUserEmail() && trade.GetSenderEmail() == senderemail
+          && trade.GetStatus() == Trade_Status.Pending)
+          {
+            trade.Deny();
+            Console.WriteLine("Trade requests denied.");
+          }
+        }
+
+      }
+
+      Console.WriteLine();
+      Console.WriteLine("Pres ENTER to continue.");
       input = Console.ReadLine();
       break;
 
     case "9": // show completed requests
+      Console.Clear();
+
+      if (active_user == null)
+      {
+        Console.WriteLine("You should first log in....");
+      }
+      else
+      {
+        foreach (Trade trade in trades)
+        {
+          if (trade.GetReceiverEmail() == active_user.GetUserEmail() && trade.GetStatus() == Trade_Status.Accepted)
+          {
+            Console.WriteLine($"You have the following completed trade: from: {trade.GetSenderEmail()} \nItem: {trade.GetItem().GetItemName()} \nDescription: {trade.GetItem().GetItemDescription()} \nStatus: {trade.GetStatus()}");
+            Console.WriteLine("---------------------------");
+          }
+        }
+      }
 
       Console.WriteLine();
       Console.WriteLine("Pres ENTER to continue.");
-
 
       input = Console.ReadLine();
       break;
 
     case "10": // log out
+      Console.Clear();
 
       active_user = null;
 
       Console.WriteLine("You are successfully loged out.");
-
-      Console.WriteLine();
       Console.WriteLine("Thank you for using our system.");
-
-      running = false;
+      Console.WriteLine();
+      Console.WriteLine("Press Enter to continue");
+      input = Console.ReadLine();
       break;
 
     case "f":
+      Console.Clear();
 
       running = false;
       break;

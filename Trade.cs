@@ -9,10 +9,11 @@ class Trade
   Trade_Status Status; // Check the item status on the trade
 
   // a constructor to take input of the class fields
-  public Trade(string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)
+  public Trade (string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)
   {
     SenderEmail = senderemail;
     ReciverEmail = reciveremail;
+    TradeItem = tradeitem;
     Status = status;
   }
 

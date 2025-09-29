@@ -158,7 +158,7 @@ public class TradeActions
       {
         trades.Add(new Trade(active_user.GetUserEmail(), reciveremail,
         requested_item, Trade_Status.Pending));
-
+ 
         Console.WriteLine("Your request is successfully sent.");
       }
       else

@@ -1,20 +1,23 @@
-namespace App;
+namespace App; // Link or gather this class file with the rest of the classes and the executing file "program.cs".
 
-class Trade
+class Trade // This class is to link a sender, a receiver with a specifi item that will be on the trade.
 {
+  // all strings values marked as null able ? in order to tell the compiler or the system that those values are not allowed to have a null value at all.
+  // I used even Private by defualt in order to protect emails addresses and status.
+  // I used even Private by defualt in order to protect the user's email address and password information from outside access.
   string? SenderEmail; // Not a sender name in order to make it easy for the receiver to contact the sender.
 
   string? ReciverEmail; // Easy to contact.
-  Item TradeItem; // the specific item depending on the users input of the name and description of the item
+  Item TradeItem; // the specific item depending on the users input.
   Trade_Status Status; // Check the item status on the trade
 
   // a constructor to take input of the class fields
   public Trade (string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)
   {
-    SenderEmail = senderemail;
-    ReciverEmail = reciveremail;
-    TradeItem = tradeitem;
-    Status = status;
+    SenderEmail = senderemail; // Assign
+    ReciverEmail = reciveremail; // Assign
+    TradeItem = tradeitem; // Assign
+    Status = status; // Assign
   }
 
   // a method to get the sender email
@@ -61,7 +64,7 @@ class Trade
 
 }
 
-// permenent values on the trade
+// permenent values on the trade's status.
 enum Trade_Status
 {
   Pending,

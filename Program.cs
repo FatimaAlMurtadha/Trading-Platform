@@ -23,6 +23,7 @@ TradeActions actions = new TradeActions();
 bool running = true; // start with true value in order to run the while-loop and stop when ever we want to go out of the while-loop.
 
 // creat a while-loop to be run when ever we run this code or this Trade system.
+
 while (running) // when ever the boolean variable is true "the program is running" 
 {
   // Clear the screen when ever the user press Enter and the while-loop runs.
@@ -118,7 +119,9 @@ while (running) // when ever the boolean variable is true "the program is runnin
       Console.Clear(); // To clear the screen
       Console.WriteLine("The choice is wrong or empty!"); // a message to be shown if the input is empty or not on the cases.
       Console.WriteLine("Press ENTER to choose again. "); // telling the user what is the problem and what to do next.
+      Console.ReadLine();
       break; // stop switch code block. 
+
   } // the end of the switch- case
 
 } // the end of the while-loop

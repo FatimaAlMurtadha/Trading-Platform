@@ -5,11 +5,11 @@ public class Trade // This class is to link a sender, a receiver with a specifi 
   // all strings values marked as null able ? in order to tell the compiler or the system that those values are not allowed to have a null value at all.
   // I used even Private by defualt in order to protect emails addresses and status.
   // I used even Private by defualt in order to protect the user's email address and password information from outside access.
-  public string? SenderEmail; // Not a sender name in order to make it easy for the receiver to contact the sender.
+   string? SenderEmail; // Not a sender name in order to make it easy for the receiver to contact the sender.
 
-  public string? ReciverEmail; // Easy to contact.
+   string? ReciverEmail; // Easy to contact.
   public Item TradeItem; // the specific item depending on the users input.
-  public Trade_Status Status; // Check the item status on the trade
+   public Trade_Status Status; // Check the item status on the trade
 
   // a constructor to take input of the class fields
   public Trade(string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)
@@ -33,7 +33,7 @@ public class Trade // This class is to link a sender, a receiver with a specifi 
   }
 
   // a method to get the specific item on the trade
-  public Item GetItem()
+  public Item GetItemName()
   {
     return TradeItem;
   }

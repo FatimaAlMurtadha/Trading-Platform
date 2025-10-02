@@ -83,7 +83,7 @@ class SaveData
     {
       foreach (Trade trade in trades)
       {
-        writer.WriteLine($" {trade.GetReceiverEmail()}, {trade.GetSenderEmail()}, {trade.GetItem()}, {trade.GetStatus()}");
+        writer.WriteLine($" {trade.GetReceiverEmail()}, {trade.GetSenderEmail()}, {trade.GetItemName()}, {trade.GetStatus()}");
       }
 
     }
@@ -101,7 +101,7 @@ class SaveData
         string[] parts = line.Split(',');
         if (parts.Length == 4)
         {
-          //trades.Add(new Trade(parts[0], parts[1], parts[2], parts[3]));
+          //trades.Add(new Trade(parts[0], parts[1], item., status));
 
         }
 

@@ -68,7 +68,7 @@ while (running) // when ever the boolean variable is true "the program is runnin
 
       break; // breaks out of the switch block or stop the execution of more code and case testing, When a match is found, and the job is done.
 
-    case "2": // lognning in the registred user to be able to navigate and interact with system.
+    case "2": // lognning in the registred user to be able to navigate and interact with the system.
       actions.LogIn();     // call the lognning in method to be executed.
 
       break; // stop / break the swich block.
@@ -126,9 +126,9 @@ while (running) // when ever the boolean variable is true "the program is runnin
       Console.ReadLine();
       break; // stop switch code block. 
 
-  } // the end of the switch- case
+  } 
 
-} // the end of the while-loop
+} 
 
 
 Console.WriteLine("The programe is done! Thankm you for using our Trade System"); // a thankfull message to be shown att the end

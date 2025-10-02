@@ -48,9 +48,9 @@ If you are using Windows you need to:
 
 2. Go in the application by this command : cd TradeSystem
 
-3. Run the application using this command : dotnet run
+3. Run the application using this command : dotnet run ![ a screenshote of the command](./Photoes/Screenshot%202025-10-02%20140445.png)
 
-4. Once the application is run: you will find all the instruction aboout what to do as you run the previous command.
+4. Once the application is run: you will find all the instruction about what to do as you run the previous command ![a screenshote of the user's interface] (./Photoes/Screenshot 2025-10-02 140507)
 5. There will be a choice at the end of the program letting you to close it  
 
 ### Cntribution Guide

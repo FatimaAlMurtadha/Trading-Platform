@@ -14,10 +14,14 @@
 --- A user needs to be able to deny a trade request.
 --- A user needs to be able to browse completed requests.
 */
-// With Classes
+// Load all data first
+SaveData.LoadUsers();
+SaveData.LoadItems();
+SaveData.LoadTrades();
 
 // creat an object which called "actions" in order to be able to call the TradeSystemClasses.cs's methods.
 TradeActions actions = new TradeActions();
+//actions.LoadUsers();
 
 // creat a boolean variable in order to oppen a while-loop
 bool running = true; // start with true value in order to run the while-loop and stop when ever we want to go out of the while-loop.

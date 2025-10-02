@@ -1,18 +1,18 @@
 namespace App; // Link or gather this class file with the rest of the classes and the executing file "program.cs".
 
-class Trade // This class is to link a sender, a receiver with a specifi item that will be on the trade.
+public class Trade // This class is to link a sender, a receiver with a specifi item that will be on the trade.
 {
   // all strings values marked as null able ? in order to tell the compiler or the system that those values are not allowed to have a null value at all.
   // I used even Private by defualt in order to protect emails addresses and status.
   // I used even Private by defualt in order to protect the user's email address and password information from outside access.
-  string? SenderEmail; // Not a sender name in order to make it easy for the receiver to contact the sender.
+  public string? SenderEmail; // Not a sender name in order to make it easy for the receiver to contact the sender.
 
-  string? ReciverEmail; // Easy to contact.
-  Item TradeItem; // the specific item depending on the users input.
-  Trade_Status Status; // Check the item status on the trade
+  public string? ReciverEmail; // Easy to contact.
+  public Item TradeItem; // the specific item depending on the users input.
+  public Trade_Status Status; // Check the item status on the trade
 
   // a constructor to take input of the class fields
-  public Trade (string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)
+  public Trade(string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)
   {
     SenderEmail = senderemail; // Assign
     ReciverEmail = reciveremail; // Assign
@@ -21,13 +21,13 @@ class Trade // This class is to link a sender, a receiver with a specifi item th
   }
 
   // a method to get the sender email
-  public string GetSenderEmail()
+  public string? GetSenderEmail()
   {
     return SenderEmail;
   }
 
   // a method to get the receiver email
-  public string GetReceiverEmail()
+  public string? GetReceiverEmail()
   {
     return ReciverEmail;
   }
@@ -65,7 +65,7 @@ class Trade // This class is to link a sender, a receiver with a specifi item th
 }
 
 // permenent values on the trade's status.
-enum Trade_Status
+public enum Trade_Status
 {
   Pending,
   Denied,

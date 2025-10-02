@@ -2,7 +2,7 @@ namespace App; // Link or gather this class file with the rest of the classes an
 
 
 // a class to manage the system's items. In order to allow a specific user to set a name and description for his own items.
-class Item
+public class Item
 {
   // all strings values marked as null able ? in order to tell the compiler or the system that those values are not allowed to have a null value at all.
   // I used even Public in order to protect the item's name and description information from outside access.

@@ -5,13 +5,13 @@ namespace App; // Link or gather this class file with the rest of the classes an
 public class TradeActions
 {
   // Creat an object list of Users to store all registered users in the system.
-  List<User> users = new List<User>(); // an object of the class User with a list.
+  List<User> users = SaveData.LoadUsers(); // an object of the class User with a list.
 
   // Creat an object list of Items to store all uploaded items in the system.
-  List<Item> items = new List<Item>(); // an object of the class Item with a list.
+  List<Item> items = SaveData.LoadItems(); // an object of the class Item with a list.
 
   // Creat an object list of Trades to store all trade status in the system.
-  List<Trade> trades = new List<Trade>(); // an object of the class User with a list.
+  List<Trade> trades = SaveData.LoadTrades(); // an object of the class User with a list.
 
   // Creat a variable to check the current logged in user and the value null means none user is logged in at the beganing. In order to check the loggning in status.
   User? active_user = null;
@@ -31,11 +31,12 @@ public class TradeActions
     if (useremail != "" && useremail != null && password != "" && password != null)
     {
       users.Add(new User(useremail, password)); // if the condition is checked store bothe input in the user's list as an object. 
+                                                // Store registration info
+      SaveData.SaveUsers(users);
 
       Console.WriteLine("Congragelations. Your account is registered seccussfully."); // show a message to the user that the account is registered.
       Console.WriteLine(); // an empty line to make the view more orgnized.
-      Console.WriteLine("Press Enter to continue......"); // show a message telling the user to continue.
-      Console.ReadLine(); // an empty line to make the view more orgnized.
+
     }
     else // when ever if sats is not true do the folloing
     {
@@ -74,10 +75,11 @@ public class TradeActions
         }
       }
       // if-else sats to check the searching result on the users' list.
+      if (found_user != null) // if we found the input information "are not null".
       {
-        if (found_user != null) // if we found the input information "are not null".
-          active_user = found_user; // set the given information to the active user.
+        active_user = found_user; // set the given information to the active user.
         Console.WriteLine($"Welcom to the trade system, {active_user.GetUserEmail()}"); // greeting the user by calling the getuseremail method.
+
       }
       else // if we can not find the given information or one of the info is not strored "Not correct".
       {
@@ -116,6 +118,8 @@ public class TradeActions
       string? owneremail = active_user.GetUserEmail(); // link the item with the active user's email
 
       items.Add(new Item(itemname, itemdescription, owneremail)); // adding the item on the Items list as a new object.
+      // Store items' info
+      SaveData.SaveItems(items);
       Console.WriteLine("Your item is successfully uploaded. "); // showing succed
       Console.WriteLine();
 
@@ -137,7 +141,7 @@ public class TradeActions
     else
     {
       Console.WriteLine("Items of other users: "); // titel
-                                                   // foreach-loop to go throug the items list
+      // foreach-loop to go throug the items list
       foreach (Item item in items)
       { // start if sats to show only other users' items but not the active user's items.
         if (item.GetOwnerEmail() != active_user.GetUserEmail())
@@ -164,6 +168,8 @@ public class TradeActions
     }
     else
     {
+      ShowOthersItems(); // Call showothersitems method in order to make it easier for the user to choose an item and an owner.
+      Console.WriteLine();
       Console.WriteLine("Enter the item's name: ");
       string? itemname = Console.ReadLine();
 
@@ -184,6 +190,8 @@ public class TradeActions
       {
         trades.Add(new Trade(active_user.GetUserEmail(), reciveremail,
         requested_item, Trade_Status.Pending));
+        // Store trades' info
+        SaveData.SaveTrades(trades);
 
         Console.WriteLine("Your request is successfully sent.");
       }
@@ -208,13 +216,13 @@ public class TradeActions
     else
     {
       Console.WriteLine("You received the following requests: ");
-// foreach-loop to show all requests 
+      // foreach-loop to show all requests 
       foreach (Trade trade in trades)
       {
         if (trade.GetReceiverEmail() == active_user.GetUserEmail()
         && trade.GetStatus() == Trade_Status.Pending)
         {
-          Console.WriteLine($"a request from: {trade.GetSenderEmail()} , for item: {trade.GetItem()}, status: {trade.GetStatus()}");
+          Console.WriteLine($"a request from: {trade.SenderEmail} , for item: {trade.TradeItem.ItemName}, status: {trade.Status}");
           Console.WriteLine("-------------------------------");
 
         }
@@ -229,16 +237,24 @@ public class TradeActions
   {
 
     Console.Clear();
-// check log in
+    // check log in
     if (active_user == null)
     {
       Console.WriteLine("You should first log in......");
     }
     else // if inloged
     {
+      Console.WriteLine("You have received a request from the following users: ");
+
+      foreach (Trade trade in trades) // start a foreach-loop in order to make it easier for the user to write the email of the requester.
+      {
+        Console.WriteLine(trade.GetSenderEmail());
+
+      }
+      Console.WriteLine();
       Console.WriteLine("Enter the sender's email address: "); // ask for sender email
       string? senderemail = Console.ReadLine(); // store
-// foreach-loop to go throug all statuses on the trades list
+                                                // foreach-loop to go throug all statuses on the trades list
       foreach (Trade trade in trades)
       {
         // start if-sats to check that all information are correct "receiver, sender, status".
@@ -265,6 +281,14 @@ public class TradeActions
     }
     else
     {
+      Console.WriteLine("You have received a request from the following users: ");
+
+      foreach (Trade trade in trades) // start a foreach-loop in order to make it easier for the user to write the email of the requester's user.
+      {
+        Console.WriteLine(trade.GetSenderEmail());
+
+      }
+      Console.WriteLine(); 
       Console.WriteLine("Enter the sender's email address: ");
       string? senderemail = Console.ReadLine();
       // foreach-loop to go throug all statuses on the trades list

@@ -9,7 +9,7 @@ public class Trade // This class is to link a sender, a receiver with a specifi 
 
    string? ReciverEmail; // Easy to contact.
   public Item TradeItem; // the specific item depending on the users input.
-   public Trade_Status Status; // Check the item status on the trade
+  public Trade_Status Status; // Check the item status on the trade
 
   // a constructor to take input of the class fields
   public Trade(string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)

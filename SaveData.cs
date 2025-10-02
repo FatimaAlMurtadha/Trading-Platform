@@ -101,7 +101,7 @@ class SaveData
         string[] parts = line.Split(',');
         if (parts.Length == 4)
         {
-          //trades.Add(new Trade(parts[0], parts[1], item., status));
+          trades.Add(new Trade(parts[0], parts[1], parts [2], parts[3]));
 
         }
 

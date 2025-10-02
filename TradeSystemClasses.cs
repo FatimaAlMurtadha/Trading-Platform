@@ -222,7 +222,7 @@ public class TradeActions
         if (trade.GetReceiverEmail() == active_user.GetUserEmail()
         && trade.GetStatus() == Trade_Status.Pending)
         {
-          Console.WriteLine($"a request from: {trade.GetSenderEmail()} , for item: {trade.GetItemName()}, status: {trade.GetStatus()}");
+          Console.WriteLine($"a request from: {trade.GetReceiverEmail()} , for item: {trade.GetItemName()}, status: {trade.GetStatus()}");
           Console.WriteLine("-------------------------------");
 
         }
@@ -327,7 +327,7 @@ public class TradeActions
       { // start if-sats to check that all information are correct "receiver, user, status".
         if (trade.GetReceiverEmail() == active_user.GetUserEmail() && trade.GetStatus() == Trade_Status.Accepted)
         {
-          Console.WriteLine($"You have the following completed trade: from: {trade.GetSenderEmail()} \nItem: {trade.GetItemName().GetItemName()} \nDescription: {trade.GetItemName().GetItemDescription()} \nStatus: {trade.GetStatus()}");
+          Console.WriteLine($"You have the following completed trade: from: {trade.GetSenderEmail()} \nItem: {trade.GetItemName()} \nDescription: {trade.TradeItem.GetItemDescription()} \nStatus: {trade.GetStatus()}");
           Console.WriteLine("---------------------------");
         }
       }

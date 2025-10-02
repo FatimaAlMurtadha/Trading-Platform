@@ -7,7 +7,7 @@ public class Item
   // all strings values marked as null able ? in order to tell the compiler or the system that those values are not allowed to have a null value at all.
   // I used even Public in order to protect the item's name and description information from outside access.
    string? ItemName; 
-   string? ItemDescription;
+  public string? ItemDescription;
 
   // The owner email is private to allow just the users who are logged in to se it in order to send a request.
   string? OwnerEmail;

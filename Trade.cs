@@ -7,16 +7,16 @@ public class Trade // This class is to link a sender, a receiver with a specifi 
   // I used even Private by defualt in order to protect the user's email address and password information from outside access.
    string? SenderEmail; // Not a sender name in order to make it easy for the receiver to contact the sender.
 
-   string? ReciverEmail; // Easy to contact.
-  public Item TradeItem; // the specific item depending on the users input.
+   string? ReceiverEmail; // Easy to contact.
+  public Item TradeItemName; // the specific item depending on the users input.
   public Trade_Status Status; // Check the item status on the trade
 
   // a constructor to take input of the class fields
-  public Trade(string? senderemail, string? reciveremail, Item tradeitem, Trade_Status status)
+  public Trade(string? senderemail, string? receiveremail, Item tradeitem, Trade_Status status)
   {
     SenderEmail = senderemail; // Assign
-    ReciverEmail = reciveremail; // Assign
-    TradeItem = tradeitem; // Assign
+    ReceiverEmail = receiveremail; // Assign
+    TradeItemName = tradeitem; // Assign
     Status = status; // Assign
   }
 
@@ -29,13 +29,13 @@ public class Trade // This class is to link a sender, a receiver with a specifi 
   // a method to get the receiver email
   public string? GetReceiverEmail()
   {
-    return ReciverEmail;
+    return ReceiverEmail;
   }
 
   // a method to get the specific item on the trade
   public Item GetItemName()
   {
-    return TradeItem;
+    return TradeItemName;
   }
 
   // a method too check the trade status

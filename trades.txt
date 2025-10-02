@@ -1,2 +1,2 @@
-
-
+fatima,sukaina,cars,red,fatima,Accepted
+fatima,ahmed,cars,red,fatima,Denied

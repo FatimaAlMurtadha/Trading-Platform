@@ -1,14 +1,13 @@
-using System.Diagnostics;
-
 namespace App;
 
 // a class to store all the system data
+// Methods here are static in order to call them directly, no need for an object.
 class SaveData
 {
   // save users
   public static void SaveUsers(List<User> users)
   {
-    using (StreamWriter writer = new StreamWriter("users.txt", append: false))
+    using (StreamWriter writer = new StreamWriter("users.txt", append: false)) // the append is false because when I tried it "True" with "utbildaren Max" all the data duplicate when ever we add a new data.
     {
       foreach (User user in users)
       {
@@ -17,27 +16,27 @@ class SaveData
 
     }
   }
-   // load users
- public static List<User> LoadUsers()
- {
+  // load users
+  public static List<User> LoadUsers()
+  {
     List<User> users = new List<User>();
-     using (StreamReader reader = new StreamReader("users.txt"))
+    using (StreamReader reader = new StreamReader("users.txt"))
     {
-       string line;
-    while ((line = reader.ReadLine()) != null)
-     {
-       string[] parts = line.Split(',');
+      string line;
+      while ((line = reader.ReadLine()) != null)
+      {
+        string[] parts = line.Split(',');
         if (parts.Length == 2)
         {
-         users.Add(new User(parts[0], parts[1]));
+          users.Add(new User(parts[0], parts[1]));
+
+        }
 
       }
 
-     }
-
-  }
+    }
     return users;
- }
+  }
 
 
   // save items
@@ -91,7 +90,8 @@ class SaveData
 
   // load trades
   public static List<Trade> LoadTrades()
-  { List<Trade> trades = new List<Trade>();
+  {
+    List<Trade> trades = new List<Trade>();
     if (!File.Exists("trades.txt")) return trades;
     using (StreamReader reader = new StreamReader("trades.txt"))
     {
@@ -103,6 +103,7 @@ class SaveData
         {
           string receiverEmail = parts[0];
           string senderEmail = parts[1];
+
 
           Item item = new Item(parts[2], parts[3], parts[4]);
 

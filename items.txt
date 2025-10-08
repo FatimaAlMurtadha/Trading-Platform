@@ -1,5 +1,6 @@
-cars,red,fatima
-cards,white,fatima
-cars,red,sukaina
-cards,white,sukaina
-cars,red,ahmed
+car,red,sukaina
+cards,playing white cards, new.,sukaina
+bags,backbag and hand bag,sukaina
+car,red,fatima
+books,swedish short stories,fatima
+pens,red, black and blue.,ahmed

@@ -31,7 +31,7 @@ public class TradeActions
     if (useremail != "" && useremail != null && password != "" && password != null)
     {
       users.Add(new User(useremail, password)); // if the condition is checked store bothe input in the user's list as an object. 
-                                                // Store registration info
+      // Store registration info
       SaveData.SaveUsers(users);
 
       Console.WriteLine("Congragelations. Your account is registered seccussfully."); // show a message to the user that the account is registered.
@@ -53,7 +53,7 @@ public class TradeActions
   public void LogIn() // a method to be called when ever a user chooses to log in the system.
   {
     Console.Clear(); // clear the screen
-                     // start if-else sats to check lognning in
+    // start if-else sats to check lognning in
     if (active_user == null) // when ever the user inloggning is empty aske the user to log in.
     {
       Console.WriteLine("Your email"); // ask for the registered email.
@@ -222,10 +222,11 @@ public class TradeActions
         if (trade.GetReceiverEmail() == active_user.GetUserEmail()
         && trade.GetStatus() == Trade_Status.Pending)
         {
-          Console.WriteLine($"a request from: {trade.GetReceiverEmail()} , for item: {trade.TradeItemName.GetItemName()}, status: {trade.GetStatus()}");
+          Console.WriteLine($"a request from: {trade.GetSenderEmail()} , for item: {trade.TradeItemName.GetItemName()}, status: {trade.GetStatus()}");
           Console.WriteLine("-------------------------------");
 
         }
+       
       }
     }
     Console.WriteLine("Press Enter to continue......");
@@ -283,13 +284,14 @@ public class TradeActions
     }
     else
     {
-      Console.WriteLine("You have received a request from the following users: ");
-
       foreach (Trade trade in trades) // start a foreach-loop in order to make it easier for the user to write the email of the requester's user.
-      {
-        Console.WriteLine(trade.GetSenderEmail());
-
-      }
+      
+        if (trade.GetSenderEmail() != null)
+        {
+          Console.WriteLine("You have received a request from the following users: ");
+          Console.WriteLine(trade.GetSenderEmail());
+        }
+      
       Console.WriteLine(); 
       Console.WriteLine("Enter the sender's email address: ");
       string? senderemail = Console.ReadLine();
@@ -345,8 +347,9 @@ public class TradeActions
     active_user = null;
 
     Console.WriteLine("You are successfully loged out.");
-    Console.WriteLine("Thank you for using our system.");
     Console.WriteLine();
+    Console.WriteLine("Thank you for using our system.");
+    Console.ReadLine();
 
   }
 }

@@ -3,7 +3,7 @@ namespace App; // Link or gather this class file with the rest of the classes an
 public class Trade // This class is to link a sender, a receiver with a specifi item that will be on the trade.
 {
   // all strings values marked as null able ? in order to tell the compiler or the system that those values are not allowed to have a null value at all.
-  // I used even Private by defualt in order to protect emails addresses and status.
+  // I used even Private by defualt in order to protect emails.
   // I used even Private by defualt in order to protect the user's email address and password information from outside access.
    string? SenderEmail; // Not a sender name in order to make it easy for the receiver to contact the sender.
 

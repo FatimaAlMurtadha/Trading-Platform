@@ -131,6 +131,6 @@ while (running) // when ever the boolean variable is true "the program is runnin
 } 
 
 
-Console.WriteLine("The programe is done! Thankm you for using our Trade System"); // a thankfull message to be shown att the end
+Console.WriteLine("The programe is done! Thank you for using our Trade System"); // a thankfull message to be shown att the end
 
 

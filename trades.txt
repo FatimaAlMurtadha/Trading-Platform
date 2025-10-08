@@ -1,2 +1,3 @@
-fatima,sukaina,cars,red,fatima,Accepted
-fatima,ahmed,cars,red,fatima,Denied
+sukaina,fatima,car,red,sukaina,Denied
+sukaina,fatima,bags,backbag and hand bag,sukaina,Denied
+sukaina,ahmed,car,red,sukaina,Accepted

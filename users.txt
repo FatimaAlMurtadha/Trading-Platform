@@ -1,5 +1,5 @@
 fatima,123
 sukaina,123
 ahmed,123
-manuuel,123
-max,123
+manuel,12
+max,12

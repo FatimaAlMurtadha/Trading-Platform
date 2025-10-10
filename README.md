@@ -68,4 +68,4 @@ If you are using Windows you need to:
 - "git commit -m "Your commit message" ".
 - git push origin your-new-branch-name.
 
-### More information or contribution, Do not hesitate to contact me via sms +46 760097505 , via e-mail sukaina77150@gmail.com or via LinkedIn https://www.linkedin.com/in/fatima-al-murtadha-8a19b9294/
+### More information or contribution, Do not hesitate to contact me via LinkedIn https://www.linkedin.com/in/fatima-al-murtadha-8a19b9294/

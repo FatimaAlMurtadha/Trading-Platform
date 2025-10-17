@@ -31,7 +31,7 @@ AS a user you can do the folloing on this system:
 
 ### Project structure 
 
-![a screenshote of the structure](./Photoes/Screenshot%202025-10-02%20104434.png)
+
 
 ### Requierments to use this package:
 In order to use this system you need the following: 
@@ -44,13 +44,12 @@ If you are using Windows you need to:
 
 1. Clone the repository:
 - Open "git bash" or "WindowsPowerShell".
-- Write this command : "git clone https://github.com/FatimaAlMurtadha/Trading-Platform".
+- Write this command : "git clone https:the link of the project on GitHub".
 
 2. Go in the application by this command : cd TradeSystem
 
-3. Run the application using this command : dotnet run ![ a screenshote of the command](./Photoes/Screenshot%202025-10-02%20140445.png)
-
-4. Once the application is run: you will find all the instruction about what to do as you run the previous command ![ a screenshot of the user's interface](./Photoes/Screenshot%202025-10-02%20140507.png)
+3. Run the application using this command : dotnet run 
+4. Once the application is run: you will find all the instruction about what to do as you run the previous command
 5. There will be a choice at the end of the program letting you to close it  
 
 ### Cntribution Guide
